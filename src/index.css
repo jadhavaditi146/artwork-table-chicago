@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=DM+Mono:wght@300;400;500&display=swap');
+
+:root {
+  --white:      #ffffff;
+  --bg:         #f5f3ef;
+  --surface:    #ffffff;
+  --border:     #e2ddd6;
+  --border-mid: #ccc7bc;
+
+  --ink:        #1f1e1c;
+  --ink-2:      #4a4843;
+  --ink-3:      #8c8882;
+  --ink-4:      #b8b4ae;
+
+  --teal:       #2d7d6f;
+  --teal-light: #e8f4f1;
+  --teal-mid:   #b2d8d2;
+
+  --row-alt:    #faf9f7;
+  --row-hover:  #f0ede8;
+  --row-sel:    #eaf4f2;
+
+  --radius-sm:  4px;
+  --radius:     8px;
+  --radius-lg:  12px;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { min-height: 100vh; }
+
+/* ── Layout ── */
+.app-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+}
+
+/* ── Header ── */
+.app-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.header-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.4rem;
+}
+
+.header-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.header-meta {
+  text-align: right;
+  color: var(--ink-3);
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+.header-meta span {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.selection-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.selection-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  background: var(--teal);
+  color: var(--white);
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.selection-pill.empty {
+  background: var(--border-mid);
+}
+
+.btn-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ── Buttons ── */
+.p-button {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.04em !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 0.48rem 0.9rem !important;
+  transition: all 0.13s ease !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+
+.btn-fill.p-button {
+  background: var(--teal) !important;
+  color: var(--white) !important;
+  border: 1px solid var(--teal) !important;
+}
+.btn-fill.p-button:hover {
+  background: #256659 !important;
+  border-color: #256659 !important;
+}
+
+.btn-outline.p-button {
+  background: var(--surface) !important;
+  color: var(--ink-2) !important;
+  border: 1px solid var(--border-mid) !important;
+}
+.btn-outline.p-button:hover {
+  background: var(--row-hover) !important;
+  color: var(--ink) !important;
+  border-color: var(--ink-3) !important;
+}
+
+.btn-ghost.p-button {
+  background: transparent !important;
+  color: var(--teal) !important;
+  border: 1px solid var(--teal-mid) !important;
+}
+.btn-ghost.p-button:hover {
+  background: var(--teal-light) !important;
+}
+
+/* ── Overlay panel ── */
+.p-overlaypanel {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.09), 0 2px 6px rgba(0,0,0,0.05) !important;
+}
+.p-overlaypanel::before,
+.p-overlaypanel::after { display: none !important; }
+
+.overlay-inner {
+  padding: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 180px;
+}
+
+.overlay-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ── Input ── */
+.p-inputtext {
+  width: 100% !important;
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  color: var(--ink) !important;
+  background: var(--bg) !important;
+  border: 1px solid var(--border-mid) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 0.48rem 0.75rem !important;
+  transition: border-color 0.15s, box-shadow 0.15s !important;
+}
+.p-inputtext:focus {
+  border-color: var(--teal) !important;
+  box-shadow: 0 0 0 3px rgba(45,125,111,0.1) !important;
+  outline: none !important;
+}
+.p-inputtext::placeholder { color: var(--ink-4) !important; }
+
+/* ── DataTable ── */
+.p-datatable {
+  background: transparent !important;
+  font-family: var(--font-mono) !important;
+}
+
+.p-datatable .p-datatable-wrapper {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden !important;
+}
+
+/* Header row */
+.p-datatable .p-datatable-thead > tr > th {
+  background: var(--bg) !important;
+  color: var(--ink-3) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  padding: 0.9rem 1.2rem !important;
+  border: none !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Checkbox column */
+.p-datatable .p-datatable-thead > tr > th:first-child,
+.p-datatable .p-datatable-tbody > tr > td:first-child {
+  width: 52px !important;
+  min-width: 52px !important;
+  max-width: 52px !important;
+  padding-left: 1.2rem !important;
+  padding-right: 0.5rem !important;
+  overflow: visible !important;
+}
+
+/* Body rows */
+.p-datatable .p-datatable-tbody > tr {
+  background: var(--surface) !important;
+  transition: background 0.1s !important;
+}
+.p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background: var(--row-alt) !important;
+}
+.p-datatable .p-datatable-tbody > tr:hover {
+  background: var(--row-hover) !important;
+}
+.p-datatable .p-datatable-tbody > tr.p-highlight {
+  background: var(--row-sel) !important;
+}
+
+/* Body cells — ALL wrap fully, nothing hidden */
+.p-datatable .p-datatable-tbody > tr > td {
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  color: var(--ink-2) !important;
+  padding: 0.85rem 1.2rem !important;
+  border: none !important;
+  border-bottom: 1px solid var(--border) !important;
+  vertical-align: top !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: break-word !important;
+  line-height: 1.6 !important;
+}
+
+/* Title cell — serif, prominent */
+.p-datatable .p-datatable-tbody > tr > td:nth-child(2) {
+  font-family: var(--font-display) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--ink) !important;
+  min-width: 180px !important;
+}
+
+/* Inscriptions — slightly muted, readable */
+.p-datatable .p-datatable-tbody > tr > td:nth-child(5) {
+  font-size: 11.5px !important;
+  color: var(--ink-3) !important;
+  min-width: 220px !important;
+}
+
+/* Date cells — compact, no wrap needed */
+.p-datatable .p-datatable-tbody > tr > td:nth-child(6),
+.p-datatable .p-datatable-tbody > tr > td:nth-child(7) {
+  color: var(--ink-3) !important;
+  font-size: 11.5px !important;
+  white-space: nowrap !important;
+  min-width: 70px !important;
+}
+
+/* Remove border on last row */
+.p-datatable .p-datatable-tbody > tr:last-child > td {
+  border-bottom: none !important;
+}
+
+/* ── Checkbox ── */
+.p-checkbox { width: 15px !important; height: 15px !important; }
+.p-checkbox .p-checkbox-box {
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 3px !important;
+  border: 1.5px solid var(--border-mid) !important;
+  background: var(--surface) !important;
+  transition: all 0.13s !important;
+}
+.p-checkbox:hover .p-checkbox-box { border-color: var(--teal) !important; }
+.p-checkbox .p-checkbox-box.p-highlight {
+  background: var(--teal) !important;
+  border-color: var(--teal) !important;
+}
+.p-checkbox .p-checkbox-box .p-checkbox-icon {
+  font-size: 9px !important;
+  color: white !important;
+}
+
+/* ── Paginator ── */
+.p-paginator {
+  background: var(--bg) !important;
+  border: none !important;
+  border-top: 1px solid var(--border) !important;
+  padding: 0.9rem 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.25rem !important;
+  flex-wrap: wrap !important;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg) !important;
+  position: relative !important;
+}
+
+/* Prev / Next arrows */
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  color: var(--ink-2) !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-sm) !important;
+  min-width: 32px !important;
+  height: 30px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.12s !important;
+  cursor: pointer !important;
+  margin: 0 0.15rem !important;
+}
+.p-paginator .p-paginator-prev:hover,
+.p-paginator .p-paginator-next:hover {
+  background: var(--row-hover) !important;
+  border-color: var(--border-mid) !important;
+  color: var(--ink) !important;
+}
+.p-paginator .p-paginator-prev.p-disabled,
+.p-paginator .p-paginator-next.p-disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* Hide first/last jump buttons */
+.p-paginator .p-paginator-first,
+.p-paginator .p-paginator-last {
+  display: none !important;
+}
+
+/* Numbered page buttons */
+.p-paginator .p-paginator-page {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  color: var(--ink-3) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: var(--radius-sm) !important;
+  min-width: 30px !important;
+  height: 30px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.12s !important;
+  cursor: pointer !important;
+}
+.p-paginator .p-paginator-page:hover {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--ink) !important;
+}
+.p-paginator .p-paginator-page.p-highlight {
+  background: var(--teal) !important;
+  border-color: var(--teal) !important;
+  color: var(--white) !important;
+  font-weight: 500 !important;
+}
+
+/* "Page X of Y" text */
+.p-paginator .p-paginator-current {
+  display: none !important;
+}
+
+/* ── Loading ── */
+.p-datatable-loading-overlay {
+  background: rgba(245,243,239,0.75) !important;
+  backdrop-filter: blur(3px) !important;
+}
+.p-datatable-loading-icon { color: var(--teal) !important; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-4); }
