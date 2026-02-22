@@ -1,73 +1,73 @@
-# React + TypeScript + Vite
+# 🎨 Art Institute of Chicago - Artwork Table
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript application that displays artwork data from the Art Institute of Chicago API using PrimeReact DataTable with:
 
-Currently, two official plugins are available:
+- Server-side pagination
+- Persistent row selection across pages
+- Custom row selection overlay
+- No data prefetching
+- Optimized state management
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Live Demo
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🔗 Deployed URL: https://silver-crepe-a8483a.netlify.app/ 
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React (Vite)
+- TypeScript
+- PrimeReact (DataTable, OverlayPanel)
+- Node.js
+- Netlify (Deployment)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📡 API Used
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Art Institute of Chicago API:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+https://api.artic.edu/api/v1/artworks?page=1
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## ✨ Features
+
+### ✅ Server-Side Pagination
+- Data is fetched page-by-page from the API
+- No bulk data loading
+- Uses PrimeReact `lazy` pagination
+
+### ✅ Persistent Row Selection
+- Row selection persists when navigating between pages
+- Selection state is stored using artwork IDs only
+- No row objects are stored from other pages
+
+### ✅ Select All / Deselect All (Current Page)
+- Selects only rows visible on the current page
+- Does not affect selections from other pages
+
+### ✅ Custom Row Selection (Overlay Panel)
+- User can input a number `n`
+- Selects first `n` rows from the current page
+- If `n` exceeds page size, only available rows are selected
+- No prefetching or extra API calls
+
+---
+
+## ⚠️ Important Implementation Details
+
+To meet assignment constraints:
+
+- Only current page data is stored in memory
+- No prefetching of additional pages
+- No loop-based API calls
+- Only artwork IDs are stored for selection tracking
+- Previously visited pages are always re-fetched from API
+
+---
+
+## 📂 Project Structure
